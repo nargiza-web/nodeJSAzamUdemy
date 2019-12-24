@@ -3,7 +3,7 @@ const app = express()
 const mustacheExpress = require('mustache-express')
 const bodyParser = require('body-parser')
 const pgp =require('pg-promise')()
-
+const checkAuthorization = require('./utils/authorization')
 const session = require('express-session')
 const path = require('path')
 
@@ -28,10 +28,15 @@ app.use(session({
 }))
 app.use(bodyParser.urlencoded({extended: false}))
 
+app.use((req, res, next) => {
+  res.locals.authenticated = req.session.user == null ? false : true
+  next()
+})
+
 db = pgp(CONNECTION_STRING)
 
 // setup routes
-app.use('/users', userRoutes) 
+app.use('/users',checkAuthorization, userRoutes) 
 app.use('/', indexRoutes)
 
 app.listen(PORT, () => {

@@ -4,14 +4,34 @@ const bcrypt = require('bcrypt')
 
 const SALT_ROUNDS = 10
 
+/*
 router.get('/', (req, res) => {
-  db.any('SELECT articleid, title, body, FROM articles')
+  db.any('SELECT articleid, title, body FROM articles')
   .then((articles) => {
     res.render('index', {articles: articles})
   })
 })
+*/
 
+// async and await function
+router.get('/', async (req, res) => {
+  
+  let articles = await db.any('SELECT articleid, title, body FROM articles')
+  res.render('index', {articles: articles})
 
+})
+
+router.get('/logout', (req, res, next) => {
+  if(req.session){
+    req.session.destroy((error) => {
+      if(error) {
+        next(error)
+      } else {
+        res.redirect('/login')
+      }
+    })
+  }
+})
 router.get('/register', (req, res) => {
   res.render('register')
 })
