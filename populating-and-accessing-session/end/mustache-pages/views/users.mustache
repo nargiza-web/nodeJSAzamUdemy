@@ -1,0 +1,26 @@
+<html>
+
+<body>
+
+  {{> menu}}
+
+  <h1>Users</h1>
+
+  Hello, {{name}} and your age is {{age}}
+
+  <ul>
+  {{#users}}
+    <li>
+      {{name}} - {{age}}
+    </li>
+  {{/users}}
+  {{^users}}
+    <h2>No users exist!!</h2>
+  {{/users}}
+
+
+  </ul>
+
+</body>
+
+</html>

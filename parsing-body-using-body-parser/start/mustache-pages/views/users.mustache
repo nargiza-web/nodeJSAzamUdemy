@@ -1,0 +1,22 @@
+<html>
+
+<body>
+
+  <h1>Users</h1>
+
+  <ul>
+  {{#users}}
+    <li>
+      {{name}} - {{age}}
+    </li>
+  {{/users}}
+  {{^users}}
+    <h2>No users exist!!</h2>
+  {{/users}}
+
+
+  </ul>
+
+</body>
+
+</html>

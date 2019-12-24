@@ -1,0 +1,57 @@
+const express = require('express')
+const router = express.Router()
+
+// localhost:3000/users
+router.get('/',(req,res) => {
+
+  let user = {
+            name: req.session.name,
+            age: req.session.age,
+            address: {
+              street: "789 Street",
+              city: "Houston",
+              state: "TX"
+            }
+
+          }
+
+  res.render('index',user)
+})
+
+router.get('/add-user',(req,res) => {
+  res.render('add-user')
+})
+
+
+router.post('/add-user',(req,res) => {
+
+  let name = req.body.name
+  let age = req.body.age
+
+  if(req.session) {
+    req.session.name = name
+    req.session.age = age
+  }
+
+  console.log(name)
+  console.log(age)
+
+  res.status(200).send()
+})
+
+
+router.get('/users',(req,res) => {
+
+  let users =
+      [
+        {name: "John Doe", age: 34},
+        {name: "Mary Doe", age: 32},
+        {name: "Alex Lowe",age: 27}
+      ]
+
+    users = []
+    res.render('users',{users: users, name: req.session.name, age: req.session.age})
+
+})
+
+module.exports = router
