@@ -5,6 +5,91 @@ const models = require('../models')
 
 const SALT_ROUNDS = 10
 
+router.get('/logout', (req, res) => {
+  
+  if(req.session) {
+    req.session.destroy((error) => {
+      if(error) {
+        next(error)
+      } else {
+        res.redirect('/login')
+      }
+    })
+  }
+  
+})
+
+router.get('/comments/:commentId', async (req, res) => {
+  
+  let commentId = req.params.commentId
+  let comment = await models.Comment.findOne({
+    include: [
+      {
+        model: models.Product,
+        as: 'product'
+      }
+    ],
+    where: {
+      id: commentId
+    }
+  })
+  
+  console.log(comment)
+  res.json(comment)
+  
+})
+
+router.post('/add-comment', async (req,res) => {
+  
+  let productId =parseInt(req.body.productId)
+  let title = req.body.title
+  let description = req.body.description
+  
+  let comment = models.Comment.build({
+    title: title,
+    description: description,
+    productId: productId
+  })
+  
+  let savedComment = await comment.save()
+  
+  if(savedComment) {
+    res.redirect(`/products/${productId}`)
+  } else {
+    res.render('product-details', {message: 'Error adding comments!'})
+  }
+  
+})
+
+router.get('/products/:productId', async (req, res) => {
+  
+  const productId = req.params.productId
+  //const product = await models.Product.findByPk(productId)
+  //console.log(product)
+  //res.render('product-details', product.dataValues)
+  const product = await models.Product.findOne({
+    include: [
+      {
+        model: models.Comment,
+        as: 'comments'
+      }
+    ],
+    where: {
+      id: productId
+    }
+  })
+  
+  console.log(product.dataValues)
+  res.render('product-details', product.dataValues)
+})
+
+router.get('/', async (req, res) => {
+  
+  let products = await models.Product.findAll()
+  res.render('index', {products:products}
+  )
+})
+
 router.get('/login', (req, res) => {
   res.render('login')
 })

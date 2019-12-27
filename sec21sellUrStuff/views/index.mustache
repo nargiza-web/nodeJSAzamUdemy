@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   
+    {{> header}}
+
+    <title>Sell Your Stuff</title>
+  </head>
+  <body>
+   
+    
+<div class = "container">
+{{> menu}} 
+        
+  <ul class = "list-group" >
+    {{#products}}
+    
+    <img src="/uploads/{{imageURL}}" class="product-preview-image" />
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <a href="/products/{{id}}">{{title}}</a>
+      <small>${{price}}</small>
+    </li>
+    
+    {{/products}}
+    
+  </ul>
+        
+                
+</div>
+      {{> footer}}
+  </body>
+</html>

@@ -1,0 +1,55 @@
+
+
+<html lang="en">
+  <head>
+
+    {{> header}}
+
+    <title>Sell Your Stuff</title>
+  </head>
+  <body>
+    <h1>Add Product</h1>
+
+    <div class="container">
+      {{> menu}}
+
+      <div class="list-group">
+
+        <ul>
+          {{#products}}
+            <div>
+              <img src="/uploads/{{imageURL}}" class="product-preview-image" />
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{title}}</h5>
+            </div>
+            <p class="mb-1">{{description}}</p>
+            <small class="text-success"><b>${{price}}</b></small>
+
+            <form action="/users/delete-product" method="POST">
+                <input type="hidden" name="productId" value="{{id}}" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+
+            <a href="/users/products/{{id}}"><button class="btn btn-info">Edit</button></a>
+
+          {{/products}}
+
+        </ul>
+
+      </div>
+
+
+
+    </div>
+
+    {{#message}}
+  <div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+  {{/message}}
+
+
+    {{> footer}}
+  </body>
+</html>

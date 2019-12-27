@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   
+    {{> header}}
+
+    <title>Sell Your Stuff</title>
+  </head>
+  <body>
+<div class = "container">
+{{> menu}}
+     <img src="/uploads/{{imageURL}}" />
+     <h3>{{title}}</h3>
+     <p>{{description}}</p>
+     <small>${{price}}</small>
+          
+    <!-- Add Comment -->
+    <div class="add-comment">
+    <b>Add Comment</b>
+    <form action = "/add-comment" method="POST">
+      <input type="hidden" name="productId" value="{{id}}" />
+      <div class="form-group">
+        <label for="exampleInputEmail1">Title</label>
+        <input type="text" class="form-control" name="title" aria-describedby="emailHelp" placeholder="Enter title">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Description</label>
+        <textarea type="text" name="description" class="form-control" placeholder="Description"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+      
+      <h2>Comments</h2>
+         
+      <ul class="list-group">
+        {{#comments}}
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{title}}</h5>
+        </div>
+        <p class="mb-1">
+          {{description}}
+        </p>
+        
+        
+        {{/comments}}
+      
+      </ul>
+         
+</div>
+    
+  {{#message}}
+  <div class="alert alert-danger" role="alert">
+   {{message}}
+  </div>
+  {{/message}}
+
+    
+      {{> footer}}
+  </body>
+</html>
