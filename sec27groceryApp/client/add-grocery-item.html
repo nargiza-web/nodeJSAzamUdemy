@@ -21,38 +21,52 @@
    <div class="collapse navbar-collapse" id="navbarNav">
      <ul class="navbar-nav">
        <li class="nav-item active">
-          <a class="nav-link" href="view-all-shopping-lists.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
        </li>
        <li class="nav-item">
           <a class="nav-link" href="add-shopping-list.html">Add Shopping List</a>
        </li>
        <li class="nav-item">
-          <a class="nav-link" href="add-grocery-item.html">Add Grocery Item</a>
+          <a class="nav-link" href="#">Add Grocery Item</a>
+       </li>
+       <li class = "nav-item">
+         <a class="nav-link" href="view-all-shopping-lists.html">View All Shopping Lists</a>
        </li>
      </ul>
    </div>
  </nav>
    
- <form>
-  <div class="form-group">
-    <label> Name </label>
-    <input type="text" class="form-control" id="nameTextBox" placeholder="Enter name">
-  </div>
-  <div class="form-group">
-    <label>Address</label>
-    <input type="text" class="form-control" id="addressTextBox" placeholder="Enter address"> 
-  </div>
-  <button type="submit" id="saveShoppingListButton" class="btn btn-primary">Save</button>
- </form>
+ <h1>Add Grocery Item</h1>
  
-   </div>
-
+ <!-- Form to add shopping list -->
+ <form>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" id="shoppingListDropDownButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select a Shopping List</button>
+    <div class="dropdown-menu" id="shoppingListDropDownMenu" aria-labelledby = "dropdownMenuButton"></div>
+    
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" id="nameTextBox" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="text" class="form-control" id="priceTextBox" placeholder="Enter price">
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="text" class="form-control" id="quantityTextBox" placeholder="Enter quantity">
+    </div>
+    <button type="submit" id="saveGroceryItem" class="btn btn-primary">Save</button>
+  </form>
+  
+  </div>
+  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     
-    <script src="add-shopping-list.js"></script>
+    <script src="add-grocery-item.js"></script>
   </body>
 </html>
