@@ -48,6 +48,7 @@ router.post('/upload/edit/:productId', (req, res) => {
   
 })
 
+// when edit button is clicked
 router.get('/products/:productId', async (req, res) => {
   
   let productId = req.params.productId
